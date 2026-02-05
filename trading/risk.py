@@ -47,3 +47,41 @@ def calculate_position_size(
 
     position_size = risk_amount / per_unit_risk
     return round(position_size, 4)
+
+
+
+def calculate_trade(
+    account_balance: float,
+    risk_percent: float,
+    entry: float,
+    direction: str
+) -> TradeRisk:
+    """
+    High-level trade risk calculator
+    Enforces 1:2 RR always
+    """
+
+    # 1. Decide absolute risk per trade (price movement)
+    risk_amount_price = entry * (risk_percent / 100)
+
+    # 2. Calculate SL and TP
+    stop_loss, take_profit = calculate_sl_tp(
+        entry=entry,
+        risk_amount=risk_amount_price,
+        direction=direction
+    )
+
+    # 3. Calculate position size
+    position_size = calculate_position_size(
+        account_balance=account_balance,
+        risk_percent=risk_percent,
+        entry=entry,
+        stop_loss=stop_loss
+    )
+
+    return TradeRisk(
+        entry=entry,
+        stop_loss=stop_loss,
+        take_profit=take_profit,
+        position_size=position_size
+    )
