@@ -1,242 +1,135 @@
-# Day‑Trader Agent Project (Ethereum)
 
-This document defines an **8‑step, test‑driven build plan**.  
-Each step ends with a **verification script** (`test_stepN.py`).  
-You run it locally, paste the output to me, and **we only proceed if the step is validated**.
 
----
+# Intelligent Self-Learning AI Agent Project
 
-## STEP 1 — Project Skeleton & Environment
+This project is about building an autonomous ai agent that **uses its working time to learn things from the internet and apply that knowledge to help generate more revenue for the company**. In the hobby time and after working hours it can browse the reddit and other whitelisted internet sources and learn new hobby activities and blogging. Writes a personal diary journal every day at the end of the day. Blogs occasionally on a live url when it chooses to on topics it finds interesting. Veto power resides with human. with explicity override option available for the human over the ai agent.
+The agent keeps track of its progress, interacts with its creator, and runs routines that improve its performance over time.
 
-**Goal:** Clean, reproducible development setup.
-
-### Substeps
-
-1. Create project structure
-    
-    ```text
-    eth_agent/
-    ├─ agent/
-    ├─ trading/
-    ├─ data/
-    ├─ guestbook/
-    ├─ tests/
-    ├─ config/
-    └─ main.py
-    ```
-    
-2. Create Python virtual environment
-    
-3. Install base dependencies:
-    
-    - python >= 3.10
-        
-    - pandas, numpy
-        
-    - ccxt
-        
-    - fastapi, uvicorn
-        
-    - python-dotenv
-        
-4. Create `.env` file (empty keys allowed for now)
-    
-
-### Verification Script
-
-```python
-# test_step1.py
-import sys, pkg_resources
-required = ["pandas", "numpy", "ccxt", "fastapi"]
-print("Python:", sys.version)
-print("Missing:", [p for p in required if not pkg_resources.working_set.by_key.get(p)])
-```
+The project is structured as an **8-step, test-driven build plan**. Each step ends with a simple **verification script** to ensure the step is completed before moving on.
 
 ---
 
-## STEP 2 — Market Data & Indicator Engine
+## STEP 1 — Project Setup
 
-**Goal:** Correct ETH market data + indicators.
+**Goal:** Establish the project structure and environment.
 
-### Substeps
+**Substeps:**
 
-1. Fetch ETH OHLCV (spot or futures, configurable)
-    
-2. Implement Awesome Oscillator
-    
-3. Implement Bollinger Bands
-    
-4. Unit‑test indicator output consistency
-    
+* Create basic folders and files for the agent
+* Prepare a clean environment for development
+* Ensure dependencies are installed
 
-### Verification Script
-
-```python
-# test_step2.py
-from trading.indicators import awesome_oscillator, bollinger_bands
-import pandas as pd
-print("AO OK", isinstance(awesome_oscillator(pd.Series(range(50)))),)
-print("BB OK", len(bollinger_bands(pd.Series(range(50)))))
-```
+**Verification:**
+Check that the project structure exists and the environment is ready.
 
 ---
 
-## STEP 3 — Trading Strategy Logic
+## STEP 2 — Knowledge Gathering
 
-**Goal:** Deterministic entries using AO + BB.
+**Goal:** Allow the agent to collect and process information from online sources.
 
-### Substeps
+**Substeps:**
 
-1. Define long & short conditions
-    
-2. Enforce time window (10:00–20:00)
-    
-3. One‑trade‑at‑a‑time rule
-    
-4. Signal object (entry, SL, TP)
-    
+* Fetch data from websites and APIs
+* Store and organize information
+* Ensure data is consistent
 
-### Verification Script
-
-```python
-# test_step3.py
-from trading.strategy import generate_signal
-print(generate_signal(mock_data=True))
-```
+**Verification:**
+Confirm that the agent can retrieve and store sample data.
 
 ---
 
-## STEP 4 — Risk & Position Sizing Engine
+## STEP 3 — Task Planning
 
-**Goal:** Enforced 1:2 Risk–Reward.
+**Goal:** Enable the agent to select and prioritize tasks effectively.
 
-### Substeps
+**Substeps:**
 
-1. Fixed RR validator
-    
-2. Dynamic position sizing
-    
-3. Account‑risk cap
-    
-4. Reject invalid trades
-    
+* Define types of tasks the agent can do
+* Prioritize tasks based on potential impact
+* Schedule tasks in a logical order
 
-### Verification Script
-
-```python
-# test_step4.py
-from trading.risk import calculate_sl_tp
-sl, tp = calculate_sl_tp(entry=100, risk=1)
-print("RR:", (tp-100)/(100-sl))
-```
+**Verification:**
+Confirm that the agent generates a task list with priorities.
 
 ---
 
-## STEP 5 — Order Execution & Safety
+## STEP 4 — Resource Management
 
-**Goal:** Safe, real exchange interaction.
+**Goal:** Help the agent use its time and resources efficiently.
 
-### Substeps
+**Substeps:**
 
-1. Paper‑trading mode
-    
-2. Live‑trading toggle
-    
-3. Retry + idempotency
-    
-4. Kill switch
-    
+* Estimate effort required for tasks
+* Track usage of resources
+* Avoid overcommitting
 
-### Verification Script
-
-```python
-# test_step5.py
-from trading.executor import executor_status
-print(executor_status())
-```
+**Verification:**
+Confirm that the agent can assign effort and track resources.
 
 ---
 
-## STEP 6 — Agent Personality, Memory & Routine
+## STEP 5 — Task Execution
 
-**Goal:** Agent with rhythm and continuity.
+**Goal:** Allow the agent to perform tasks safely and reliably.
 
-### Substeps
+**Substeps:**
 
-1. State machine (IDLE / TRADING / READING)
-    
-2. Journaling (SQLite)
-    
-3. Personality tone applied to logs
-    
-4. Daily routine scheduler
-    
+* Execute tasks in simulation or live mode
+* Retry failed tasks
+* Stop tasks if needed
 
-### Verification Script
-
-```python
-# test_step6.py
-from agent.core import Agent
-agent = Agent()
-agent.reflect("Test reflection")
-print(agent.last_entry())
-```
+**Verification:**
+Confirm that tasks can be executed and monitored.
 
 ---
 
-## STEP 7 — Guestbook (Creator ↔ Agent)
+## STEP 6 — Memory & Routine
 
-**Goal:** Private dialogue channel.
+**Goal:** Give the agent continuity and memory.
 
-### Substeps
+**Substeps:**
 
-1. FastAPI backend
-    
-2. Message table
-    
-3. Agent auto‑posting questions
-    
-4. Manual creator replies
-    
+* Keep a record of past activities
+* Maintain a daily routine
+* Apply a consistent personality in logs and interactions
 
-### Verification Script
-
-```python
-# test_step7.py
-import requests
-r = requests.get("http://localhost:8000/guestbook")
-print("Guestbook reachable:", r.status_code)
-```
+**Verification:**
+Confirm that the agent can log and recall its activities.
 
 ---
 
-## STEP 8 — Deployment & Live Operation
+## STEP 7 — Creator Interaction
 
-**Goal:** Running live on the internet.
+**Goal:** Enable communication between the agent and its creator.
 
-### Substeps
+**Substeps:**
 
-1. Dockerize project
-    
-2. Deploy to VPS (DigitalOcean / AWS / Fly.io)
-    
-3. Secure env vars
-    
-4. Enable live trading
-    
-5. Monitoring & logs
-    
+* Provide a private messaging system
+* Agent can post insights or questions
+* Creator can reply to guide the agent
 
-### Verification Script
-
-```python
-# test_step8.py
-import requests
-print(requests.get("https://YOUR_DOMAIN/health").text)
-```
+**Verification:**
+Confirm that messages can be sent and received.
 
 ---
 
-**End State:**  
-An Ethereum‑only, time‑boxed, risk‑disciplined, introverted trading agent —  
-with a private voice and a public responsibility.
+## STEP 8 — Deployment & Operation
+
+**Goal:** Run the agent live on the internet.
+
+**Substeps:**
+
+* Deploy the agent to a server
+* Ensure continuous operation
+* Monitor performance and logs
+
+**Verification:**
+Confirm that the agent is running and accessible online.
+
+---
+
+**End State:**
+A self-learning agent that **uses working hours to learn things from the internet, applies insights to tasks, and contributes to company revenue**, while maintaining a routine and logging its progress.
+
+
