@@ -5,6 +5,8 @@ from typing import List, Dict
 CF_API_URL = "https://elara-ai-worker.megadolphin3399.workers.dev"
 
 
+
+
 class ElaraAI:
     def __init__(self):
         pass  # No API keys needed when calling our own Worker
