@@ -1,10 +1,19 @@
 import time
-from datetime import datetime
+
+from persona.schedule import is_free_time, is_sleep_time
+from persona.reflection import generate_reflection
+from memory.journal.writer import write_journal_entry
+
+
+
+from datetime import datetime, timezone
+
 
 
 
 print("🤖 ETH Agent started")
-print(f"🕒 System time: {datetime.utcnow()} UTC")
+print(f"🕒 System time: {datetime.now(timezone.utc)} UTC")
+
 
 
 from market.eth_data import fetch_eth_candles
@@ -38,6 +47,17 @@ def run_agent_loop(
             )
         else:
             print(f"🌙 Outside trading hours: {now.time()}")
+
+        if is_sleep_time():
+            print("🌙 Sleeping — no actions")
+            return
+
+        if is_free_time():
+            print("📓 Free time — journaling")
+            text = generate_reflection()
+            path = write_journal_entry(text)
+            print(f"📝 Journal written: {path}")
+
 
         time.sleep(sleep_seconds)
 
