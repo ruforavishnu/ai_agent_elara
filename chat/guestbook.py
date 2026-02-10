@@ -2,6 +2,11 @@ import json
 from datetime import datetime
 from pathlib import Path
 
+from reflection.reflection_engine import ReflectionEngine
+
+
+
+
 GUESTBOOK_PATH = Path("memory/guestbook/messages.json")
 
 class Guestbook:
@@ -20,6 +25,15 @@ class Guestbook:
         with open(GUESTBOOK_PATH, "w") as f:
             json.dump(self.messages, f, indent=2)
 
+    # def add_message(self, sender: str, content: str):
+    #     entry = {
+    #         "timestamp": datetime.utcnow().isoformat(),
+    #         "sender": sender,
+    #         "content": content
+    #     }
+    #     self.messages.append(entry)
+    #     self.save_messages()
+
     def add_message(self, sender: str, content: str):
         entry = {
             "timestamp": datetime.utcnow().isoformat(),
@@ -28,6 +42,15 @@ class Guestbook:
         }
         self.messages.append(entry)
         self.save_messages()
+
+        # 🔹 Step 12.3 — trigger Elara reflection
+        if sender.lower() == "teacher":
+            engine = ReflectionEngine()
+            engine.reflect(content)
+
+
+
+
 
     def get_messages(self, last_n: int = 10):
         return self.messages[-last_n:]
