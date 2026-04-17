@@ -1,28 +1,43 @@
 import pandas as pd
-import numpy as np
 
 
+class Indicators:
 
-def awesome_oscillator(high: pd.Series, low: pd.Series) -> pd.Series:
-    """
-    Calculates Awesome Oscillator (AO)
-    """
-    median_price = (high + low) / 2
-    sma_fast = median_price.rolling(window=5).mean()
-    sma_slow = median_price.rolling(window=34).mean()
-    ao = sma_fast - sma_slow
-    return ao
+    @staticmethod
+    def bollinger_bands(df: pd.DataFrame, period: int = 20, std_dev: float = 2):
+        """
+        Adds Bollinger Bands to DataFrame:
+        - bb_middle (SMA)
+        - bb_upper
+        - bb_lower
+        """
 
+        df = df.copy()
 
-def bollinger_bands(close: pd.Series, window: int = 20, num_std: int = 2):
-    """
-    Calculates Bollinger Bands
-    Returns: middle, upper, lower
-    """
-    middle = close.rolling(window=window).mean()
-    std = close.rolling(window=window).std()
+        df["bb_middle"] = df["close"].rolling(window=period).mean()
+        df["bb_std"] = df["close"].rolling(window=period).std()
 
-    upper = middle + (std * num_std)
-    lower = middle - (std * num_std)
+        df["bb_upper"] = df["bb_middle"] + (std_dev * df["bb_std"])
+        df["bb_lower"] = df["bb_middle"] - (std_dev * df["bb_std"])
 
-    return middle, upper, lower
+        return df
+
+    @staticmethod
+    def awesome_oscillator(df: pd.DataFrame):
+        """
+        Awesome Oscillator (AO):
+        AO = SMA(5, median price) - SMA(34, median price)
+        """
+
+        df = df.copy()
+
+        # Median price
+        df["median_price"] = (df["high"] + df["low"]) / 2
+
+        # Short and long SMAs
+        df["ao_short"] = df["median_price"].rolling(window=5).mean()
+        df["ao_long"] = df["median_price"].rolling(window=34).mean()
+
+        df["ao"] = df["ao_short"] - df["ao_long"]
+
+        return df
