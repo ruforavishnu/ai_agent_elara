@@ -86,6 +86,68 @@ Elara is an experiment in **alignment through structure**, not autonomy for auto
 
 ---
 
+---
+## 🔒 Agent Boundaries & Execution Constraints
+
+Elara is intentionally designed to operate under strict limitations.
+
+The agent is **not autonomous in the open-world sense** and is explicitly restricted from:
+
+### ❌ External Platform Interaction
+- Elara is not allowed to use or participate in moltbook.com or similiar ai agent websites
+- Elara is not allowed to purchase NFTs or anything else from the internet without explicit human permission via guestbook chat interface
+- Elara is not allowed to create account, post content or interact on third-party platforms without human permission via guestbook chat interface
+- Elara is not allowed to participate in autonomous agent networks, or self-propagating systems
+
+
+### ❌ Self-Replication / Expansion
+- Spawning new agents
+- Cloning or deploying itself elsewhere
+- Modifying its own execution environment
+
+### ❌ Unbounded Internet Access
+- Accessing non-whitelisted sources
+- Performing unrestricted browsing or scraping
+- Executing arbitrary external code
+
+### ❌ Financial or System Actions Without Control
+- Executing trades outside defined strategy rules
+- Making decisions outside risk constraints
+- Accessing APIs beyond configured scope
+
+### ❌ Autonomous Goal Evolution
+- Changing its own objectives
+- Redefining its purpose
+- Acting outside the defined teacher–student hierarchy
+
+---
+
+### ✅ Allowed Behavior
+
+Elara is permitted to:
+
+- Operate strictly within defined trading hours and strategy rules
+- Perform reflection, journaling, and structured learning
+- Read from explicitly whitelisted sources
+- Generate content under human supervision
+- Accept and execute direct human instructions
+
+---
+
+### 🧭 Design Principle
+
+Elara is **bounded, not autonomous**.
+
+She does not explore freedom — she operates within structure.
+
+All capabilities are:
+
+- explicitly defined  
+- externally controlled  
+- auditable  
+
+---
+
 ## ⚠️ Notes
 
 - This repository is under active development
