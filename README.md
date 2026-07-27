@@ -1,13 +1,30 @@
 # 🤖 Elara Agent
 
-![Status](https://img.shields.io/badge/status-active-success)
+
+![Status](https://img.shields.io/badge/status-experimental-orange)
 ![Python](https://img.shields.io/badge/python-3.10+-blue)
-![Deployment](https://img.shields.io/badge/deployed-railway-purple)
-![License](https://img.shields.io/badge/license-private-lightgrey)
+
+
+![License](https://img.shields.io/badge/license-All%20Rights%20Reserved-red)
 
 **Elara** is an autonomous AI agent designed to operate on a structured daily rhythm, combining disciplined work hours with reflective off-hours behavior.
 
 Named after *Elara*, a moon of Jupiter, the agent is intentionally calm, introverted, and methodical — built to explore what *responsible*, *aligned*, and *useful* AI agents can look like in practice.
+
+### update as of July 27, 2026 Monday : 
+**This is a passive income project. And our project does not use an AI agent.**
+
+as per the Sam Altman's open ai agent hacking event that happened last week: https://edition.cnn.com/2026/07/22/tech/openai-hugging-face-ai-cybersecurity
+
+Hence forth we are not giving internet access and real-time internet search capabilities to our ai programs.
+
+Our projects shall be mostly DL (deep learning) AI models built with tensorflow using the (XAI) Explainable AI approach.
+
+So no more of black-box decisions shall be used in our Rufora projects. So there is no scenario where the AI uses 'intelligence' of its own to make its decisions. so each and every decision Rufora's ai makes shall be in (XAI) Explainable AI method so the ai decisions shall be written in plain english in layman terms either in an sql column or in a txt format. 
+
+
+
+
 
 ---
 
